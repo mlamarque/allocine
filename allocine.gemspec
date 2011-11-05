@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "allocine/version"
 
 Gem::Specification.new do |s|
-  s.name        = "allocine"
+  s.name        = "allocine_api"
   s.version     = Allocine::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Matthieu Lamarque"]
