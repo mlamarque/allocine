@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# File: script/console
+irb = RUBY_PLATFORM =~ /(:?mswin|mingw)/ ? 'irb.bat' : 'irb'
+
+
+require "awesome_print"
+
+libs =  " -r irb/completion"
+libs << " -r #{File.dirname(__FILE__) + '/../lib/console_lib/console_logger.rb'}"
+#libs <<  " -r /path.../allocine/lib/allocine.rb"
+puts "Loading allocine gem"
+exec "#{irb} #{libs} --simple-prompt"
