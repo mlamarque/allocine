@@ -22,12 +22,31 @@ Movies:
   #=> "Star Wars : Episode I - La Menace fantôme"
 
 
+Serie:
+
+  i = Allocine::Serie.new(223)
+  i.title
+  #=> "Lost, les disparus"
+
+
+Season:
+
+  i = Allocine::Season.new(12277)
+  i.episode_ids
+  #=> [233014, 233015, 233016, 233017, 233018, 233019, 233020, 233021, 233022, 233023, 233024, 233025, 233026, 233027, 233028, 233029, 233030, 247699]
+
+Episode:
+
+  s = Allocine::Episode.new(233014)
+  s.title
+  #=> "On efface tout"
+
 == TESTING:
 
 You'll need rspec installed to run the specs.
 
     $ bundle install
-    $ rspec spec/imdb/movie_spec.rb
+    $ rspec spec
 
 == LICENSE:
 
