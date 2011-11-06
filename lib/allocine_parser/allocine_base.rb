@@ -94,7 +94,6 @@ module Allocine
 
     private
     
-    # Returns a new Hpricot document for parsing.
     def document
       @document ||= Allocine::Movie.find_by_id(@id)
     end
