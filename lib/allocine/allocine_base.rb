@@ -6,9 +6,9 @@ module Allocine
   
   # Represents a AllocineBase
   class AllocineBase
-    attr_accessor :id, :url, :title, :also_known_as
+    attr_accessor :id, :url, :title
     
-    def initialize(allocine_id, title = nil, also_known_as = [])
+    def initialize(allocine_id, title = nil)
       @id = allocine_id
       @url = "http://api.allocine.fr/rest/v3/movie?code=#{allocine_id}&profile=large&format=json&partner=YW5kcm9pZC12M3M"
     end
