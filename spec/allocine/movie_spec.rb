@@ -63,10 +63,6 @@ describe "Allocine::Movie" do
       @movie.press_rating.should eql(3.125)
     end
   
-    it "should find the user rating" do
-      @movie.user_rating.should eql(3.64026)
-    end
-      
     it "should find the title" do
       @movie.title.should =~ /Star Wars : Episode I - La Menace fantôme/
     end
