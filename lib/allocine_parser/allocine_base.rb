@@ -3,7 +3,8 @@ module Allocine
   require 'rubygems'
   require 'json'
   require 'net/http'
-  
+
+#m= Allocine::Movie.new(20754)  
   # Represents a AllocineBase
   class AllocineBase
     attr_accessor :id, :url, :title
@@ -14,15 +15,51 @@ module Allocine
     end
     
     # Returns the name of the director
-    def directors
+    def directors_name
       document["castingShort"]["directors"].split(", ") rescue nil
+    end
+    
+    # Returns directors
+    def directors
+      directors = []
+      directors_ids.each do |id|
+        directors << Allocine::Person.new(id)
+      end
+      directors
+    end
+        
+    # Returns ids of directors
+    def directors_ids
+      directors_ids = []
+      directors_name.each_with_index do |director, index|
+        directors_ids << document["castMember"][index]["person"]["code"] if director == document["castMember"][index]["person"]["name"]
+      end
+      directors_ids
     end
 
     # Returns an array with cast members
-    def actors
+    def actors_name
       document["castingShort"]["actors"].split(", ") rescue nil
     end
 
+    # Returns ids of actors (major)
+    def actors_ids
+      actors_ids = []
+      actors_name.each_with_index do |actor, index|
+        actors_ids << document["castMember"][directors_name.size + index]["person"]["code"] if actor == document["castMember"][directors_name.size + index]["person"]["name"]
+      end
+      actors_ids
+    end
+    
+    # Returns actors
+    def actors
+      actors = []
+      actors_ids.each do |id|
+        actors << Allocine::Person.new(id)
+      end
+      actors
+    end
+    
     # Returns an array of genres (as strings)
     def genres
       document["genre"].collect {|gender| gender["$"]} rescue nil
@@ -76,7 +113,6 @@ module Allocine
     def original_title
       document["originalTitle"] rescue nil
     end
-    
     
     # Returns release date for the movie.
     def release_date

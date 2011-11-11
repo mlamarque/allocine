@@ -17,20 +17,24 @@ describe "Allocine::Movie" do
   
     it "should find the cast members" do
       cast = @movie.actors
-    
       cast.should be_an(Array)
-      cast.should include("Liam Neeson")
-      cast.should include("Natalie Portman")
-      cast.should include("Jake Lloyd")
-      cast.should include("Ian McDiarmid")
+      cast.first.name.should =~ /Liam Neeson/
     end
 
     it "should find the directors" do
-      @movie.directors.should be_an(Array)
-      @movie.directors.size.should eql(1)
-      @movie.directors.first.should =~ /George Lucas/
+      @movie.directors_name.should be_an(Array)
+      @movie.directors_name.size.should eql(1)
+      @movie.directors_name.first.should =~ /George Lucas/
     end
   
+    it "should find the directors" do
+      cast = @movie.directors
+      cast.should be_an(Array)
+      cast.first.name.should =~ /George Lucas/
+      cast.first.birth_date.should =~ /1944-05-14/
+      cast.first.gender.should =~ /1/ 
+    end
+    
     it "should find the genres" do
       genres = @movie.genres
       genres.should be_an(Array)
